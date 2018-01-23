@@ -7,11 +7,13 @@
         </router-link>
         <div class="head-nav">
           <ul class="nav-list">
-            <li>登录</li>
-            <li class="nav-pile">|</li>
-            <li>注册</li>
-            <li class="nav-pile">|</li>
-            <li>关于</li>
+            <li>{{ userName }}</li>
+            <li v-if="userName !== ''" class="nav-pile">|</li>
+            <li v-if="userName === ''" @click="logClick">登录</li>
+            <li v-if="userName === ''" class="nav-pile">|</li>
+            <li v-if="userName === ''" @click="regClick">注册</li>
+            <li v-if="userName === ''" class="nav-pile">|</li>
+            <li @click="aboutClick">关于</li>
           </ul>
         </div>
       </div>
@@ -24,12 +26,53 @@
     <div class="app-footer">
       <p>© 2018 ocean soft </p>
     </div>
+    <my-dialog :is-show="isShowLogDialog" @on-close="closeDialog('isShowLogDialog')">
+      <log-form @has-login="onSuccessLogin"></log-form>
+    </my-dialog>
+    <my-dialog :is-show="isShowRegDialog" @on-close="closeDialog('isShowRegDialog')">
+      <reg-form></reg-form>
+    </my-dialog>
+    <my-dialog :is-show="isShowAboutDialog" @on-close="closeDialog('isShowAboutDialog')">
+      <p>about us</p>
+    </my-dialog>
   </div>
 </template>
 
 <script>
+
+  import Dialog from './base/dialog'
+  import logForm from './logForm'
+  import regForm from './regForm'
+
   export default {
-    name: "layout"
+    data: () => ({
+      isShowAboutDialog: false,
+      isShowLogDialog: false,
+      isShowRegDialog: false,
+      userName: ''
+    }),
+    components: {
+      regForm,
+      logForm,
+      MyDialog: Dialog,
+    },
+    methods: {
+      aboutClick() {
+        this.isShowAboutDialog = true
+      },
+      logClick(){
+        this.isShowLogDialog = true
+      },
+      regClick(){
+        this.isShowRegDialog = true
+      },
+      closeDialog(param) {
+        this[param] = false
+      },
+      onSuccessLogin(data){
+        this.userName = data.userName
+      }
+    }
   }
 </script>
 

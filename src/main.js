@@ -5,12 +5,17 @@ import Layout from './components/layout'
 import VueRouter from 'vue-router'
 import IndexPage from './pages/index'
 import ElementUI from 'element-ui'
+import VueResource from 'vue-resource'
 import 'element-ui/lib/theme-chalk/index.css'
 import locale from 'element-ui/lib/locale/lang/zh-CN'
 
+Vue.config.productionTip = false;
+
 Vue.use(VueRouter)
+Vue.use(VueResource)
 Vue.use(ElementUI)
 Vue.use(ElementUI, { locale })
+
 
 let router = new VueRouter({
     mode: 'history',
