@@ -4,7 +4,7 @@
       <div class="product-board">
         <img :src="productIcon">
         <ul>
-          <router-link v-for="item in products" :to="{ path: item.path }" tag="li" active-class="active" :key="item">
+          <router-link v-for="(item,index) in products" :to="{ path: item.path }" tag="li" active-class="active" :key="index">
             {{ item.name }}
           </router-link>
         </ul>

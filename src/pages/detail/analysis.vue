@@ -11,7 +11,7 @@
           购买数量：
         </div>
         <div class="sales-board-line-right">
-          <el-input-number size="mini" v-model="BuyNum" :min="1" :max="99"></el-input-number>
+          <v-counter :rules="rules"></v-counter>
         </div>
       </div>
       <div class="sales-board-line">
@@ -27,9 +27,7 @@
           有效时间：
         </div>
         <div class="sales-board-line-right">
-          <el-radio v-model="BuyTime" label="1" border size="mini">一年</el-radio>
-          <el-radio v-model="BuyTime" label="2" border size="mini">两年</el-radio>
-          <el-radio v-model="BuyTime" label="3" border size="mini">三年</el-radio>
+          <v-radio :radioData="radioData"></v-radio>
         </div>
       </div>
       <div class="sales-board-line">
@@ -37,8 +35,7 @@
           产品版本：
         </div>
         <div class="sales-board-line-right">
-          <el-radio v-model="BuyVersion" label="1" border size="mini">最新版</el-radio>
-          <el-radio v-model="BuyVersion" label="2" border size="mini">稳定版</el-radio>
+          <v-radio :radioData="versionData"></v-radio>
         </div>
       </div>
       <div class="sales-board-line">
@@ -115,15 +112,50 @@
 
 <script>
   import VSelection from '../../components/base/selection'
+  import VCounter from '../../components/base/counter'
+  import VRadio from '../../components/base/radio'
 
   export default {
     components: {
-      VSelection
+      VSelection,
+      VCounter,
+      VRadio
     },
     data() {
       return {
-        BuyNum: 1,
-        BuyTime: 1,
+        rules: {
+          BuyNum: 1,
+          min: 1,
+          max: 99
+        },
+        radioData: [
+          {
+            label: 1,
+            title: '一年'
+          },
+          {
+            label: 2,
+            title: '两年'
+          },
+          {
+            label: 3,
+            title: '三年'
+          },
+          {
+            label: 4,
+            title: '四年'
+          }
+        ],
+        versionData: [
+          {
+            label: 1,
+            title: '最新版'
+          },
+          {
+            label: 2,
+            title: '稳定版'
+          },
+        ],
         BuyVersion: 1,
         options: [{
           value: '0',
