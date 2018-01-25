@@ -28,7 +28,10 @@ let router = new VueRouter({
   routes: [
     {
       path: '/',
-      component: IndexPage
+      component: IndexPage,
+      meta: {
+        title: '首页'
+      }
     },
     {
       path: '/detail',
@@ -37,23 +40,43 @@ let router = new VueRouter({
       children: [
         {
           path: 'analysis',
-          component: DetailAnalysisPage
+          component: DetailAnalysisPage,
+          meta:{
+            title:'流量分析'
+          }
         },
         {
           path: 'forecast',
-          component: DetailForecastPage
+          component: DetailForecastPage,
+          meta:{
+            title:'数据预测'
+          }
         },
         {
           path: 'count',
-          component: DetailCountPage
+          component: DetailCountPage,
+          meta:{
+            title:'数据统计'
+          }
         },
         {
           path: 'publish',
-          component: DetailPublishPage
+          component: DetailPublishPage,
+          meta:{
+            title:'广告发布'
+          }
         }
       ]
     }
   ]
+})
+
+router.beforeEach((to, from, next) => {
+  /* 路由发生变化修改页面title */
+  if (to.meta.title) {
+    document.title = to.meta.title
+  }
+  next()
 })
 
 /* eslint-disable no-new */

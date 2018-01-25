@@ -134,15 +134,15 @@
             list: [
               {
                 name: '数据统计',
-                url: 'detail/analysis'
-              },
-              {
-                name: '数据预测',
                 url: 'detail/count'
               },
               {
+                name: '数据预测',
+                url: 'detail/forecast'
+              },
+              {
                 name: '流量分析',
-                url: 'detail/forecast',
+                url: 'detail/analysis',
                 hot: true
               },
               {
