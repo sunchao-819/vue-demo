@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import Layout from './components/layout'
 import VueRouter from 'vue-router'
+import Vuex from 'vuex'
 import IndexPage from './pages/index'
 import DetailPage from './pages/detail'
 import DetailAnalysisPage from './pages/detail/analysis'
@@ -21,6 +22,7 @@ Vue.use(VueRouter)
 Vue.use(VueResource)
 Vue.use(ElementUI)
 Vue.use(ElementUI, {locale})
+Vue.use(Vuex)
 
 
 let router = new VueRouter({

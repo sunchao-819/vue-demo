@@ -10,7 +10,7 @@
                   placeholder="请输入密码"></el-input>
         <span class="error-tips">{{ passwordErrors.errorText }}</span>
       </el-form-item>
-      <el-button type="primary" class="toLogin" @click="onLogin">登录</el-button>
+      <!--<el-button type="primary" class="toLogin" @click="onLogin">登录</el-button>-->
       <p class="error-tips">{{ errorText }}</p>
     </el-form>
   </div>

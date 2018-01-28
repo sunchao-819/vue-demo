@@ -25,7 +25,8 @@
         </div>
       </div>
       <div class="index-right">
-        <slide-show :slides="slides" :invTime="invTime"></slide-show>
+        <!--<slide-show :slides="slides" :invTime="invTime"></slide-show>-->
+        <Vbanner :bannerData="slides"></Vbanner>
         <div class="index-board-list">
           <div v-for="( item,index ) in boardList" class="index-board-item" :class="{ 'line-last' : index%2 !== 0}">
             <div class="index-board-item-inner" :class="'index-board-' + item.id">
@@ -46,10 +47,12 @@
 
 <script>
   import slideShow from '../components/slideShow'
+  import Vbanner from '../components/banner'
 
   export default {
     components: {
-      slideShow
+      slideShow,
+      Vbanner
     },
     data () {
       return {

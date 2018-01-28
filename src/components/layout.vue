@@ -9,7 +9,7 @@
           <ul class="nav-list">
             <li>{{ userName }}</li>
             <li v-if="userName !== ''" class="nav-pile">|</li>
-            <li v-if="userName === ''" @click="logClick">登录</li>
+            <li v-if="userName === ''" @click="dialogFormVisible = true">登录</li>
             <li v-if="userName === ''" class="nav-pile">|</li>
             <li v-if="userName === ''" @click="regClick">注册</li>
             <li v-if="userName === ''" class="nav-pile">|</li>
@@ -26,9 +26,15 @@
     <div class="app-footer">
       <p>© 2018 ocean soft </p>
     </div>
-    <my-dialog :is-show="isShowLogDialog" @on-close="closeDialog('isShowLogDialog')">
-      <log-form @has-login="onSuccessLogin"></log-form>
-    </my-dialog>
+
+    <el-dialog title="用户登录" :visible.sync="dialogFormVisible">
+      <log-form></log-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="dialogFormVisible = false">登 录</el-button>
+      </div>
+    </el-dialog>
+
     <my-dialog :is-show="isShowRegDialog" @on-close="closeDialog('isShowRegDialog')">
       <reg-form></reg-form>
     </my-dialog>
@@ -45,12 +51,26 @@
   import regForm from './regForm'
 
   export default {
-    data: () => ({
-      isShowAboutDialog: false,
-      isShowLogDialog: false,
-      isShowRegDialog: false,
-      userName: ''
-    }),
+    data() {
+      return {
+        isShowAboutDialog: false,
+        isShowLogDialog: false,
+        isShowRegDialog: false,
+        userName: '',
+        dialogFormVisible: false,
+        form:{
+          name: '',
+          region: '',
+          date1: '',
+          date2: '',
+          delivery: false,
+          type: [],
+          resource: '',
+          desc: ''
+        },
+        formLabelWidth: '120px'
+      }
+    },
     components: {
       regForm,
       logForm,
